@@ -1,0 +1,102 @@
+{
+	"name": "pip-desafio-adf",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get_tables",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select quotename(table_schema) + '.' + quotename(table_name) as table_name from INFORMATION_SCHEMA.TABLES;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "AzureSqlTable_gen",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "ForEach",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get_tables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get_tables').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pip_copy_data_sql_adls",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"schema_par": {
+										"value": "@pipeline().parameters.schema_par",
+										"type": "Expression"
+									},
+									"table_name_par": {
+										"value": "@item()",
+										"type": "Expression"
+									},
+									"container_par": {
+										"value": "@pipeline().parameters.container_par",
+										"type": "Expression"
+									},
+									"directory_par": {
+										"value": "@pipeline().parameters.directory_par",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"container_par": {
+				"type": "string",
+				"defaultValue": "landing"
+			},
+			"directory_par": {
+				"type": "string",
+				"defaultValue": "desafio"
+			},
+			"schema_par": {
+				"type": "string",
+				"defaultValue": "SalesLT"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-01-29T15:52:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
