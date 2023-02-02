@@ -141,7 +141,7 @@
 				}
 			},
 			{
-				"name": "If Condition1",
+				"name": "If Condition",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
@@ -159,7 +159,7 @@
 					},
 					"ifFalseActivities": [
 						{
-							"name": "Copy data1_copy1",
+							"name": "Copy data",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -237,7 +237,7 @@
 							"type": "Script",
 							"dependsOn": [
 								{
-									"activity": "Copy data1_copy1",
+									"activity": "Copy data",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -271,7 +271,7 @@
 					],
 					"ifTrueActivities": [
 						{
-							"name": "Web1",
+							"name": "Web",
 							"type": "WebActivity",
 							"dependsOn": [],
 							"policy": {
