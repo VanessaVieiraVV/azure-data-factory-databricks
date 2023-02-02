@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select quotename(table_schema) + '.' + quotename(table_name) as table_name from INFORMATION_SCHEMA.TABLES;",
+						"sqlReaderQuery": "select table_name from INFORMATION_SCHEMA.TABLES where table_schema = '@{pipeline().parameters.schema_par}' ;",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -51,7 +51,7 @@
 					"isSequential": false,
 					"activities": [
 						{
-							"name": "Execute Pipeline1",
+							"name": "Execute Pipeline",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
