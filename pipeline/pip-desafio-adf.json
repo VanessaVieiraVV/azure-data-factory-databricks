@@ -118,7 +118,7 @@
 					"variableName": "tables_to_load",
 					"value": [
 						"ProductCategory",
-						" ProductModel"
+						"ProductModel"
 					]
 				}
 			}
