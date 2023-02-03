@@ -7,7 +7,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "Set variable",
+						"activity": "Tables_to_load",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -110,14 +110,15 @@
 				}
 			},
 			{
-				"name": "Set variable",
+				"name": "Tables_to_load",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "tables_to_load",
 					"value": [
-						"['ProductCategory', 'ProductModel']"
+						"'ProductCategory'",
+						" 'ProductModel'"
 					]
 				}
 			}
