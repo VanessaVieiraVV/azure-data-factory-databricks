@@ -5,7 +5,14 @@
 			{
 				"name": "Get_tables",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -87,6 +94,24 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Set variable",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "tables_to_load",
+					"value": [
+						"['ProductCategory', 'ProductModel']"
+					]
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": []
 			}
 		],
 		"parameters": {
@@ -101,6 +126,11 @@
 			"schema_par": {
 				"type": "string",
 				"defaultValue": "SalesLT"
+			}
+		},
+		"variables": {
+			"tables_to_load": {
+				"type": "Array"
 			}
 		},
 		"annotations": [],
