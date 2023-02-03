@@ -7,29 +7,22 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-ava-cc-eng-vvc01"
 		},
-		"AzureDataLakeStorage2_accountKey": {
+		"ls_AzureSqlDatabase_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
+			"metadata": "Secure string for 'connectionString' of 'ls_AzureSqlDatabase'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-cc-eng-vvc01.database.windows.net;Initial Catalog=AdventureWorksLT;User ID=vvc"
 		},
 		"ls_DataLakeStorage_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_DataLakeStorage'"
 		},
-		"AzureDataLakeStorage2_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://dlsavaccengvvc01.dfs.core.windows.net/"
-		},
-		"ls_AzureSqlDatabase_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "sn-azsql-pwd-vvc"
-		},
 		"ls_DataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dlsavaccengvvc01.dfs.core.windows.net/"
 		},
-		"ls_akv_cc_eng_properties_typeProperties_baseUrl": {
+		"ls_AzureKeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://kv-ava-cc-eng-vvc.vault.azure.net/"
+			"defaultValue": "https://akv-cc-eng-vvc03.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -1013,23 +1006,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ls_AzureSqlDatabase')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1037,18 +1013,19 @@
 				"annotations": [],
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
-					"connectionString": {
+					"connectionString": "[parameters('ls_AzureSqlDatabase_connectionString')]",
+					"password": {
 						"type": "AzureKeyVaultSecret",
 						"store": {
-							"referenceName": "ls_akv_cc_eng",
+							"referenceName": "ls_AzureKeyVault",
 							"type": "LinkedServiceReference"
 						},
-						"secretName": "[parameters('ls_AzureSqlDatabase_properties_typeProperties_connectionString_secretName')]"
+						"secretName": "sn-azsql-pwd-cc-vvc03"
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_akv_cc_eng')]"
+				"[concat(variables('factoryId'), '/linkedServices/ls_AzureKeyVault')]"
 			]
 		},
 		{
@@ -1069,14 +1046,14 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ls_akv_cc_eng')]",
+			"name": "[concat(parameters('factoryName'), '/ls_AzureKeyVault')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureKeyVault",
 				"typeProperties": {
-					"baseUrl": "[parameters('ls_akv_cc_eng_properties_typeProperties_baseUrl')]"
+					"baseUrl": "[parameters('ls_AzureKeyVault_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []

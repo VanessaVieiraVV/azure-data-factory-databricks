@@ -5,23 +5,17 @@
 		"factoryName": {
 			"value": "adf-ava-cc-eng-vvc01"
 		},
-		"AzureDataLakeStorage2_accountKey": {
-			"value": ""
+		"ls_AzureSqlDatabase_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-cc-eng-vvc01.database.windows.net;Initial Catalog=AdventureWorksLT;User ID=vvc"
 		},
 		"ls_DataLakeStorage_accountKey": {
 			"value": ""
 		},
-		"AzureDataLakeStorage2_properties_typeProperties_url": {
-			"value": "https://dlsavaccengvvc01.dfs.core.windows.net/"
-		},
-		"ls_AzureSqlDatabase_properties_typeProperties_connectionString_secretName": {
-			"value": "sn-azsql-pwd-vvc"
-		},
 		"ls_DataLakeStorage_properties_typeProperties_url": {
 			"value": "https://dlsavaccengvvc01.dfs.core.windows.net/"
 		},
-		"ls_akv_cc_eng_properties_typeProperties_baseUrl": {
-			"value": "https://kv-ava-cc-eng-vvc.vault.azure.net/"
+		"ls_AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://akv-cc-eng-vvc03.vault.azure.net/"
 		},
 		"containerUri": {
 			"value": ""
