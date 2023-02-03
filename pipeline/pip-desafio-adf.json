@@ -62,7 +62,7 @@
 					"isSequential": false,
 					"activities": [
 						{
-							"name": "If Condition2",
+							"name": "If Condition",
 							"type": "IfCondition",
 							"dependsOn": [],
 							"userProperties": [],
@@ -100,37 +100,6 @@
 										}
 									}
 								]
-							}
-						},
-						{
-							"name": "Execute Pipeline_copy1",
-							"type": "ExecutePipeline",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "pip_copy_data_sql_adls",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
-								"parameters": {
-									"schema_par": {
-										"value": "@pipeline().parameters.schema_par",
-										"type": "Expression"
-									},
-									"table_name_par": {
-										"value": "@item().table_name",
-										"type": "Expression"
-									},
-									"container_par": {
-										"value": "@pipeline().parameters.container_par",
-										"type": "Expression"
-									},
-									"directory_par": {
-										"value": "@pipeline().parameters.directory_par",
-										"type": "Expression"
-									}
-								}
 							}
 						}
 					]
