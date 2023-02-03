@@ -117,8 +117,8 @@
 				"typeProperties": {
 					"variableName": "tables_to_load",
 					"value": [
-						"'ProductCategory'",
-						" 'ProductModel'"
+						"ProductCategory",
+						" ProductModel"
 					]
 				}
 			}
