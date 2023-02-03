@@ -40,7 +40,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "Set variable",
+								"activity": "Tables_to_load",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -101,7 +101,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"expression": {
-											"value": "@contains(variables('tables_to_load'), item())",
+											"value": "@contains(variables('tables_to_load'), item().table_name)",
 											"type": "Expression"
 										},
 										"ifTrueActivities": [
@@ -143,14 +143,15 @@
 						}
 					},
 					{
-						"name": "Set variable",
+						"name": "Tables_to_load",
 						"type": "SetVariable",
 						"dependsOn": [],
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "tables_to_load",
 							"value": [
-								"[['ProductCategory', 'ProductModel']"
+								"'ProductCategory'",
+								" 'ProductModel'"
 							]
 						}
 					}
