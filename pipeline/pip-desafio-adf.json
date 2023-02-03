@@ -79,7 +79,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"pipeline": {
-												"referenceName": "pip_copy_data_sql_adls",
+												"referenceName": "pip_copy_data_sql_desafio",
 												"type": "PipelineReference"
 											},
 											"waitOnCompletion": true,
