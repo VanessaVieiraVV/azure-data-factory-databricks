@@ -31,7 +31,8 @@
 							"ds_name_table": "Product",
 							"ds_schema_table": "SalesLT"
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -70,7 +71,7 @@
 										"type": "Expression"
 									},
 									"table_name_par": {
-										"value": "@item()",
+										"value": "@item().table_name",
 										"type": "Expression"
 									},
 									"container_par": {
