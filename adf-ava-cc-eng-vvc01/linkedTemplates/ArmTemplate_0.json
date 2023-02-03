@@ -1169,7 +1169,7 @@
 													"type": "Expression"
 												},
 												"ds_directory": {
-													"value": "@concat(pipeline().parameters.directory_par, pipeline().parameters.table_name_par)",
+													"value": "@concat(pipeline().parameters.directory_par, '/', pipeline().parameters.table_name_par)",
 													"type": "Expression"
 												}
 											}
@@ -1366,7 +1366,7 @@
 												"userProperties": [],
 												"typeProperties": {
 													"pipeline": {
-														"referenceName": "pip_copy_data_sql_adls",
+														"referenceName": "pip_copy_data_sql_desafio",
 														"type": "PipelineReference"
 													},
 													"waitOnCompletion": true,
@@ -1404,8 +1404,16 @@
 						"typeProperties": {
 							"variableName": "tables_to_load",
 							"value": [
+								"Product",
+								"Address",
+								"Customer",
+								"CustomerAddress",
 								"ProductCategory",
-								"ProductModel"
+								"ProductDescription",
+								"ProductModel",
+								"ProductModelProductDescription",
+								"SalesOrderDetail",
+								"SalesOrderHeader"
 							]
 						}
 					}
@@ -1438,7 +1446,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable_gen')]",
-				"[concat(variables('factoryId'), '/pipelines/pip_copy_data_sql_adls')]"
+				"[concat(variables('factoryId'), '/pipelines/pip_copy_data_sql_desafio')]"
 			]
 		}
 	]
