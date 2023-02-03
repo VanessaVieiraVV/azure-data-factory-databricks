@@ -11,11 +11,11 @@
 		"ls_DataLakeStorage_accountKey": {
 			"value": ""
 		},
-		"ls_DataLakeStorage_properties_typeProperties_url": {
-			"value": "https://dlsavaccengvvc01.dfs.core.windows.net/"
-		},
 		"ls_AzureKeyVault_properties_typeProperties_baseUrl": {
 			"value": "https://akv-cc-eng-vvc03.vault.azure.net/"
+		},
+		"ls_DataLakeStorage_properties_typeProperties_url": {
+			"value": "https://dlsavaccengvvc01.dfs.core.windows.net/"
 		}
 	}
 }

@@ -16,19 +16,32 @@
 			"metadata": "Secure string for 'connectionString' of 'ls_AzureSqlDatabase'",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-cc-eng-vvc01.database.windows.net;Initial Catalog=AdventureWorksLT;User ID=vvc"
 		},
-		"ls_DataLakeStorage_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://dlsavaccengvvc01.dfs.core.windows.net/"
-		},
 		"ls_AzureKeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://akv-cc-eng-vvc03.vault.azure.net/"
+		},
+		"ls_DataLakeStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dlsavaccengvvc01.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_AzureKeyVault')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('ls_AzureKeyVault_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ls_DataLakeStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -42,19 +55,6 @@
 						"type": "SecureString",
 						"value": "[parameters('ls_DataLakeStorage_accountKey')]"
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_AzureKeyVault')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('ls_AzureKeyVault_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []
@@ -929,9 +929,6 @@
 					},
 					"max_valor_escrito": {
 						"type": "String"
-					},
-					"tables_to_load": {
-						"type": "Array"
 					}
 				},
 				"annotations": [],
@@ -1275,9 +1272,6 @@
 					},
 					"max_valor_escrito": {
 						"type": "String"
-					},
-					"tables_to_load": {
-						"type": "Array"
 					}
 				},
 				"annotations": [],
@@ -1410,8 +1404,8 @@
 						"typeProperties": {
 							"variableName": "tables_to_load",
 							"value": [
-								"'ProductCategory'",
-								" 'ProductModel'"
+								"ProductCategory",
+								" ProductModel"
 							]
 						}
 					}
