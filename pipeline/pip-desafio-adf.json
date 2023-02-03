@@ -67,6 +67,10 @@
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
+								"expression": {
+									"value": "@contains(variables('tables_to_load'), item())",
+									"type": "Expression"
+								},
 								"ifTrueActivities": [
 									{
 										"name": "Execute Pipeline",
@@ -116,12 +120,6 @@
 						"['ProductCategory', 'ProductModel']"
 					]
 				}
-			},
-			{
-				"name": "If Condition1",
-				"type": "IfCondition",
-				"dependsOn": [],
-				"userProperties": []
 			}
 		],
 		"parameters": {
