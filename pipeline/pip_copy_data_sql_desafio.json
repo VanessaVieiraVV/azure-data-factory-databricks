@@ -290,7 +290,7 @@
 									"TABLE_NAME": "@{pipeline().parameters.table_name_par}",
 									"TIMESTAMP": "@{utcnow()}",
 									"ERRODESCRIPTION": "NAO EXISTE NOVOS REGISTROS PARA ESTA TABELA",
-									"TO": "vanessa.vieira.v.v.c@gmail.com",
+									"TO": "vanessavieiravvc@gmail.com",
 									"SUBJECT": "INGESTAO DIARIA"
 								}
 							}
