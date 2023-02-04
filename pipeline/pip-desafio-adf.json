@@ -117,7 +117,16 @@
 				"typeProperties": {
 					"variableName": "tables_to_load",
 					"value": [
-						"CustomerAddress"
+						"Product",
+						"Address",
+						"Customer",
+						"CustomerAddress",
+						"ProductCategory",
+						"ProductDescription",
+						"ProductModel",
+						"ProductModelProductDescription",
+						"SalesOrderDetail",
+						"SalesOrderHeader"
 					]
 				}
 			}
